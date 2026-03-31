@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>hehe 😏</title>
+    <style>
+        body {
+            font-family: Arial;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f4f4f9;
+            text-align: center;
+        }
+
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <h1>oii 😳</h1>
+
+        <p style="font-size: 22px;">
+            deixa eu ver sua localização plsss 🥺🙏
+        </p>
+
+        <button onclick="pegarLocalizacao()">Permitir localização 📍</button>
+    </div>
+
+    <script>
+        function pegarLocalizacao() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(pos) {
+                    const lat = pos.coords.latitude;
+                    const lon = pos.coords.longitude;
+
+                    alert("peguei 😈📍\n" + lat + ", " + lon);
+                }, function() {
+                    alert("você não deixou 😢");
+                });
+            } else {
+                alert("não funciona nesse celular 😭");
+            }
+        }
+    </script>
+
+</body>
+</html>
