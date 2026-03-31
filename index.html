@@ -1,35 +1,79 @@
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>😏</title>
+    <style>
+        body {
+            font-family: Arial;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f4f4f9;
+            text-align: center;
+        }
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAdMOh3YHgDYUNSQXZiTuT7GeP4faIH7oA",
-  authDomain: "sualocalizacaovd.firebaseapp.com",
-  projectId: "sualocalizacaovd",
-  storageBucket: "sualocalizacaovd.firebasestorage.app",
-  messagingSenderId: "1098673186454",
-  appId: "1:1098673186454:web:44bb84a393fd7e4e2404b7"
-};
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+    <div>
+        <h1>oii 😳</h1>
 
-window.pegarLocalizacao = function() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(async function(pos) {
-            const lat = pos.coords.latitude;
-            const lon = pos.coords.longitude;
+        <p style="font-size: 22px;">
+            deixa eu ver sua localização plsss 🥺🙏
+        </p>
 
-            await addDoc(collection(db, "localizacoes"), {
-                latitude: lat,
-                longitude: lon,
-                data: new Date()
+        <button onclick="pegarLocalizacao()">Permitir localização 📍</button>
+    </div>
+
+    <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAdMOh3YHgDYUNSQXZiTuT7GeP4faIH7oA",
+      authDomain: "sualocalizacaovd.firebaseapp.com",
+      projectId: "sualocalizacaovd",
+      storageBucket: "sualocalizacaovd.firebasestorage.app",
+      messagingSenderId: "1098673186454",
+      appId: "1:1098673186454:web:44bb84a393fd7e4e2404b7"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    window.pegarLocalizacao = function() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(async function(pos) {
+                const lat = pos.coords.latitude;
+                const lon = pos.coords.longitude;
+
+                await addDoc(collection(db, "localizacoes"), {
+                    latitude: lat,
+                    longitude: lon,
+                    data: new Date()
+                });
+
+                alert("mandei 😈📍");
+            }, function() {
+                alert("não deixou 😢");
             });
-
-            alert("mandei 😈📍");
-        }, function() {
-            alert("não deixou 😢");
-        });
+        } else {
+            alert("não funciona 😭");
+        }
     }
-}
-</script>
+    </script>
+
+</body>
+</html>
